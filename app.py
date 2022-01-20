@@ -16,6 +16,7 @@ def input():
         user_name = request.form.get("name")
         user_pw = request.form.get("pw")
         user_content = request.form.get("content")
+
         # current_utc = round(datetime.utcnow().timestamp() * 1000)
         # print(user_name, current_utc)
         print(user_name)
@@ -24,13 +25,17 @@ def input():
         post = {
             "name": user_name,
             "PW": user_pw,
-            "content": user_content,
-            # "utc_stamp": current_utc
+            "content": user_content
         }
         data.insert_one(post)
         return render_template('board.html')
     else:
         return render_template('input.html')
+
+# @app.route('/input/api/list', methods=['GET'])
+# def songlist():
+#     songlist = list(mongo.db.Comport_playlist.find({},{'_id': False}))
+#     return jsonify({'song_list': songlist})
 
 @app.route('/board')
 def board_page():

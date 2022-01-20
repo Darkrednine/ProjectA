@@ -20,8 +20,35 @@
             alert("안녕하세요");
         }
 
-            })
-        }
+        function get_songlist() {
+            $.ajax({
+                type: "GET",
+                url: "/input/api/list",
+                data: {},
+                success: function (response) {
+                    let Comport_playlist = response['song_list']
+                    for (let i = 0 ; i < Comport_playlist.length ; i++){
+                        let title = Comport_playlist[i]['titel']
+                        let artist = Comport_playlist[i]['artist']
+                        let image_url = Comport_playlist[i]['image.url']
+                        let content =<li class="wish-item">
+                                            <a href="#">
+                                                <img width="120" height="120"
+                                                    src=${image_url}
+                                                    alt="다시 겨울이야 - 페이지 이동">
+                                            </a>
+                                            <div class="wish-info">
+                                                <div class="ellipsis song-title">${title}</div>
+                                                <div class="ellipsis song-artist">${artist]</div>
+                                                </div>
+                                                <div class="wish-name">${name}</div>
+                                            </div>
+                                        </li>
+                        $('#contents').append(temp_html)
+
+
+
+
     </script>
 </head>
 
@@ -118,8 +145,8 @@
                                 </a>
 
                                 <div class="song-info">
-                                    <div class="ellipsis song-title">너와 헤어지는 일은 소용없는 일</div>
-                                    <div class="ellipsis song-artist">유원지</div>
+                                    <div class="ellipsis song-title" name="sel_title">너와 헤어지는 일은 소용없는 일</div>
+                                    <div class="ellipsis song-artist" name="sel_artist">유원지</div>
                                 </div>
                             </div>
                             
@@ -138,7 +165,7 @@
                                         <tbody>
                                             <tr>
                                                 <th class="pb10">
-                                                    <label value="이름">이름</label>
+                                                    <label>이름</label>
                                                 </th>
                                                 <td class="pb10">
                                                     <div class="form-wrap">
@@ -148,7 +175,7 @@
                                             </tr>
                                             <tr >
                                                 <th class="pb10">
-                                                    <label value="비밀번호" for="">비밀번호</label>
+                                                    <label for="">비밀번호</label>
                                                 </th>
                                                 <td class="pb10">
                                                     <div class="form-wrap"><input class="type1" type="password" name="pw"></div>
@@ -156,7 +183,7 @@
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    <label value="내용">내용</label>
+                                                    <label>내용</label>
                                                 </th>
                                                 <td>
                                                     <div class="form-wrap">
